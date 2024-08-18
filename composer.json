@@ -30,7 +30,10 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "OpenAPI\\Client\\" : "lib/" }
+        "psr-4": {
+            "Merijn\\PegasusClient\\" : "lib/",
+            "Merijn\\Pegasus\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": { "OpenAPI\\Client\\Test\\" : "test/" }
