@@ -38,7 +38,7 @@ final class Pegasus implements ContainerAwareInterface
         if (!is_dir($apiDir)) {
             throw OpenDirectoryFailed::directoryNotFound($apiDir);
         }
-        
+
         foreach (glob($apiDir . '/*.php') as $file) {
             $relativePath = str_replace([$apiDir, '/', '.php'], ['', '\\', ''], $file);
             $fullClassName = "OpenAPI\\Client\\Api" . $relativePath;
@@ -47,15 +47,15 @@ final class Pegasus implements ContainerAwareInterface
         }
     }
 
+    public function botApi(): BotApi
+    {
+        return $this->getContainer()->get(BotApi::class);
+    }
+
     public function act(callable $action): void
     {
         $action($builder = new ActionBuilder());
 
         [$who, $hotel, $action] = $builder->build();
-
-        // Resolve hotel
-
-
-        dd($who, $hotel, $action);
     }
 }
