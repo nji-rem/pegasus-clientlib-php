@@ -1,17 +1,18 @@
 <?php
 
-use GuzzleHttp\Client;
-use Merijn\Pegasus\App;
-use Merijn\Pegasus\Http\ClientFactory;
+use Merijn\Pegasus\AppFacade\Action\ActionBuilder;
+use Merijn\Pegasus\AppFacade\Action\ActionEnum;
+use Merijn\Pegasus\AppFacade\Pegasus;
 use Merijn\Pegasus\Http\ClientOptions;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$clientFactory = new ClientFactory();
+$pegasus = new Pegasus(
+    new ClientOptions("127.0.0.1:666", "5a50aaeb-698b-4c15-8561-337e92265232")
+);
 
-$client = $clientFactory->createClient(new ClientOptions(
-    address: "http://localhost:666",
-    apiKey: "5a50aaeb-698b-4c15-8561-337e92265232"
-));
-
-dump($client);
+$pegasus->act(function (ActionBuilder $builder): void {
+    $builder->do(ActionEnum::EnterRoom)
+        ->who(collect())
+        ->where("Plex Hotel");
+});
