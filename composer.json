@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Merijn\\PegasusClient\\" : "lib/",
+            "OpenAPI\\Client\\" : "lib/",
             "Merijn\\Pegasus\\": "src/"
         }
     },
